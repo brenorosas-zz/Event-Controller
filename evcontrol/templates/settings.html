@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block main %}
+    {% if forms.error %}
+        <p>OOooooh droooogaa</p>
+    {% endif %}
+    <form method = "post" action = "{% url 'settings' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="change password">
+    </form>
+{% endblock %}
