@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth import logout, login
+from django.contrib.auth.models import User
+from django.views.generic import DetailView, ListView
+from .models import Event
+from .forms import EventForm, GuestForm
 def home_view(request, *args, **kwargs):
     return render(request, "home.html", {})
 
@@ -35,4 +39,31 @@ def settings_view(request, *args, **kwargs):
         form = PasswordChangeForm(data = request.POST, user = request.user)
     return render(request, "settings.html", {'form' : form})
 
+def events_view(request, *args, **kwargs):
+    events = User.objects.get(id = request.user.id).event_set.all();
+    search = request.GET.get('search')
+    if search:
+        events = events.filter(title__icontains=search)
+    return render(request, "events.html", {'events' : events})
+
+def addEvent_view(request, *args, **kwargs):
+    form = EventForm(data = request.POST)
+    if form.is_valid():
+        form.save(id = request.user.id)
+        return redirect('events')
+    else:
+        form = EventForm(data = request.POST)
+    return render(request, "addevent.html", {'form' : form})
+
+def addGuest_view(request, *args, **kwargs):
+    form = GuestForm(data = request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('events')
+    else:
+        form = GuestForm(data = request.POST)
+    return render(request, "addguest.html", {'form' : form})
+    
+class EventDetailView(DetailView):
+    model = Event
 # Create your views here.

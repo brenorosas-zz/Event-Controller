@@ -24,4 +24,8 @@ urlpatterns = [
     path('register/', register_view, name = 'register'),
     path('logout/', logout_view, name = 'logout'),
     path('settings/', settings_view, name = 'settings'),
+    path('events/', events_view, name = "events"),
+    path('events/<slug:slug>/', EventDetailView.as_view(), name = "detail"),
+    path('addevent.html', addEvent_view, name = "addevent"),
+    path('addguest.html', addGuest_view, name = "addguest"),
 ]

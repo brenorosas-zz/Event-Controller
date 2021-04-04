@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block main %}
+    <article>
+        <h2>
+            {{ event.title }}
+        </h2>
+        <p class="date">
+            This event was created on {{event.created}} by {{ event.user }}
+        </p>
+        {{ event.description|linebreaks }}
+    </article>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block main %}
+    <div>
+        <form action="." method = "GET" class="form-inline">
+            <input type="text" id = "search" name = "search" class="form-control" placeholder="Search">
+            <input type="submit" class="btn btn-primary" value = "OK">
+        </form>
+    </div>
+    {% for event in events %}
+        <article>
+            <h2>
+                <a href = "{{ event.slug }}">
+                    {{ event.title }}
+                </a>
+            </h2>
+            <p class="date">
+                This event was created on {{event.created}} by {{ event.user }}
+            </p>
+            {{ event.description|linebreaks|truncatewords:10 }}
+        </article>
+    {% endfor %}
+{% endblock %}
