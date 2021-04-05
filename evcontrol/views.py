@@ -73,7 +73,10 @@ def guests_view(request, *args, **kwargs):
         gs = Event.objects.get(id = event.id).guest_set.all()
         for guest in gs:
             guests.append(guest)
-    print(guests)
+    # search = request.GET.get('search')
+    # if search:
+    #     print("DEBUG")
+    #     guests = guests.filter(name__icontains=search)
     return render(request, "guests.html", {'guests' : guests})
 
 class EventDetailView(DetailView):

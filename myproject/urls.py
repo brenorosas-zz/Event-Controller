@@ -26,7 +26,7 @@ urlpatterns = [
     path('settings/', settings_view, name = 'settings'),
     path('events/', events_view, name = "events"),
     path('events/<slug:slug>/', EventDetailView.as_view(), name = "detail"),
-    path('addevent.html', addEvent_view, name = "addevent"),
-    path('addguest.html', addGuest_view, name = "addguest"),
-    path('guests.html', guests_view, name = "guests"),
+    path('addevent/', addEvent_view, name = "addevent"),
+    path('addguest/', addGuest_view, name = "addguest"),
+    path('guests/', guests_view, name = "guests"),
 ]

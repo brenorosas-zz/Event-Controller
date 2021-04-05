@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block main %}
+    <!-- <div>
+        <form action="." method = "GET" class="form-inline">
+            <input type="text" id = "search" name = "search" class="form-control" placeholder="Search">
+            <input type="submit" class="btn btn-primary" value = "OK">
+        </form>
+    </div> -->
     {% for guest in guests %}
         <article>
             <div>{{guest.name}}, {{guest.email}}, {{guest.event.title}}</div>
