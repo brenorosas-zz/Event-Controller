@@ -27,9 +27,9 @@ class EventForm(forms.ModelForm):
         if commit:
             event.save()
 class GuestForm(forms.ModelForm):
+    event = models.ForeignKey(Event, on_delete = models.CASCADE)
     name = models.CharField(max_length = 255)
     email = models.EmailField()
-    event = models.ForeignKey(Event, on_delete = models.CASCADE)
 
     class Meta:
         model = Guest
@@ -45,3 +45,5 @@ class GuestForm(forms.ModelForm):
             guest.save()
     def get_email(self):
         return self.cleaned_data['email']
+    def get_event(self):
+        return self.cleaned_data['event']

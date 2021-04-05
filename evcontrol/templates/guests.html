@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block main %}
+    {% for guest in guests %}
+        <article>
+            <div>{{guest.name}}, {{guest.email}}, {{guest.event.title}}</div>
+        </article>
+    {% endfor %}
+{% endblock %}

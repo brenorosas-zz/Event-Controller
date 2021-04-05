@@ -41,7 +41,7 @@ def settings_view(request, *args, **kwargs):
     return render(request, "settings.html", {'form' : form})
 
 def events_view(request, *args, **kwargs):
-    events = User.objects.get(id = request.user.id).event_set.all();
+    events = User.objects.get(id = request.user.id).event_set.all()
     search = request.GET.get('search')
     if search:
         events = events.filter(title__icontains=search)
@@ -58,14 +58,24 @@ def addEvent_view(request, *args, **kwargs):
 
 def addGuest_view(request, *args, **kwargs):
     form = GuestForm(data = request.POST)
-    if form.is_valid():
+    if form.is_valid() and send_email(form.get_email(), form.get_event()):
         form.save()
-        send_email(form.get_email())
         return redirect('events')
     else:
         form = GuestForm(data = request.POST)
     return render(request, "addguest.html", {'form' : form})
-    
+
+def guests_view(request, *args, **kwargs):
+    events = User.objects.get(id = request.user.id).event_set.all()
+    x = len(events)
+    guests = []
+    for event in events:
+        gs = Event.objects.get(id = event.id).guest_set.all()
+        for guest in gs:
+            guests.append(guest)
+    print(guests)
+    return render(request, "guests.html", {'guests' : guests})
+
 class EventDetailView(DetailView):
     model = Event
 # Create your views here.

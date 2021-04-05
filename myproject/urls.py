@@ -28,4 +28,5 @@ urlpatterns = [
     path('events/<slug:slug>/', EventDetailView.as_view(), name = "detail"),
     path('addevent.html', addEvent_view, name = "addevent"),
     path('addguest.html', addGuest_view, name = "addguest"),
+    path('guests.html', guests_view, name = "guests"),
 ]
