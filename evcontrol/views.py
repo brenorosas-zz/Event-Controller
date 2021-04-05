@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.views.generic import DetailView, ListView
 from .models import Event
 from .forms import EventForm, GuestForm
+from .tasks import send_email
 def home_view(request, *args, **kwargs):
     return render(request, "home.html", {})
 
@@ -59,6 +60,7 @@ def addGuest_view(request, *args, **kwargs):
     form = GuestForm(data = request.POST)
     if form.is_valid():
         form.save()
+        send_email(form.get_email())
         return redirect('events')
     else:
         form = GuestForm(data = request.POST)

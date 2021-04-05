@@ -43,3 +43,5 @@ class GuestForm(forms.ModelForm):
         )
         if commit:
             guest.save()
+    def get_email(self):
+        return self.cleaned_data['email']
