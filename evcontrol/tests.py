@@ -195,6 +195,7 @@ class GuestsViewTestCase(TestCase):
         self.client.logout()
         us.delete()
 
+#forms
 class EventFormTestCase(TestCase):
     def test_field_labels(self):
         form = EventForm()
