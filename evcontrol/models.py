@@ -6,7 +6,7 @@ class Event(models.Model):
     title = models.CharField(max_length = 255)
     slug = models.SlugField(max_length=255, unique=True)
     description = models.TextField()
-    date = models.DateField()
+    date = models.DateField(null=True)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
