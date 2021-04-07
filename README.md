@@ -44,7 +44,7 @@ To remove all containers in the cluster use
 ```bash
 docker-compose down -v
 ```
-
+You can see the site on your browser accessing localhost:8000
 ## Functionalities
 #### Home Page
 Just the name of project.
