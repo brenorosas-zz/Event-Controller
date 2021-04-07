@@ -1,6 +1,6 @@
 # Event-Controller
 
-This project was made as a part of Inoa's internship process.
+Project for practice Python with Django.
 
 ## Install
 
